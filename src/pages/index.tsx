@@ -1,3 +1,4 @@
+import LoginBtn from '@/components/login-btn';
 import Head from 'next/head';
 
 export default function Home() {
@@ -14,7 +15,8 @@ export default function Home() {
         {/* <link rel="icon" href="" /> */}
       </Head>
       <main>
-        <div>Playlist Manager</div>
+        <h1>Playlist Manager</h1>
+        <LoginBtn />
       </main>
     </>
   );
