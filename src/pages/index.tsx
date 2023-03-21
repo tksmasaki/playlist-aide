@@ -15,7 +15,7 @@ export default function Home() {
         {/* <link rel="icon" href="" /> */}
       </Head>
       <main>
-        <h1>Playlist Manager</h1>
+        <h1 className="text-3xl font-bold">Playlist Manager</h1>
         <LoginBtn />
       </main>
     </>
