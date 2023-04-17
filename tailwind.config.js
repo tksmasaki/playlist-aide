@@ -4,5 +4,9 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+  daisyui: {
+    // TODO: darkTheme の設定は後で決める
+    themes: ['cmyk'],
+  },
 };
