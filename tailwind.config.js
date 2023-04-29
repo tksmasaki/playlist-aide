@@ -6,7 +6,8 @@ module.exports = {
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
   daisyui: {
-    // TODO: darkTheme の設定は後で決める
-    themes: ['cmyk'],
+    // TODO: themes の設定を含め、全体カラーリングを決める
+    // ref: https://github.com/tksmasaki/playlist-aide/issues/3
+    themes: ['dark'],
   },
 };
