@@ -33,7 +33,7 @@ const HomeContent = () => {
         )}
         <div className="flex justify-center">
           <button className="btn btn-primary" onClick={() => signOut()}>
-            サインアウト
+            ログアウト
           </button>
         </div>
       </>
@@ -44,7 +44,7 @@ const HomeContent = () => {
         <h2 className="text-center">プレイリストの作成・編集をより簡単に</h2>
         <div className="flex justify-center">
           <button className="btn btn-primary" onClick={() => signIn('spotify')}>
-            Spotify でサインイン
+            Spotify でログイン
           </button>
         </div>
       </>
