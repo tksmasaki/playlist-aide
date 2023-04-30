@@ -58,8 +58,7 @@ const HomeContent = () => {
           </select>
           <div className="flex justify-center"></div>
         </div>
-        <hr />
-        <p className="text-center">
+        <p className="text-center pt-8">
           以下は試験的に表示している内容のため、削除または移動する可能性があります。
         </p>
         <h2 className="text-center">{session.token?.name}</h2>
