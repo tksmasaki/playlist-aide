@@ -1,6 +1,9 @@
 import Layout from '@/components/Layout';
+import { useAppContext } from '@/context/appContext';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 export default function Home() {
@@ -13,15 +16,12 @@ export default function Home() {
 
 const HomeContent = () => {
   const { data: session } = useSession();
-  const [selectedPlaylist, setSelectedPlaylist] = useState<string | undefined>(
-    undefined
-  );
-
-  const mockPlaylists = [
-    { id: 'playlist-1', name: 'プレイリスト1' },
-    { id: 'playlist-2', name: 'プレイリスト2' },
-    { id: 'playlist-3', name: 'プレイリスト3' },
-  ];
+  const router = useRouter();
+  const [selectedPlaylistId, setSelectedPlaylistId] = useState<
+    string | undefined
+  >(undefined);
+  const { myPlaylists } = useAppContext();
+  console.log(selectedPlaylistId);
 
   if (session === undefined) {
     return <h2 className="text-center">...</h2>;
@@ -29,25 +29,28 @@ const HomeContent = () => {
     return (
       <>
         <div className="flex justify-center">
-          <button className="btn btn-secondary btn-wide">
+          <Link href="/playlists/new" className="btn btn-wide">
             プレイリストの作成
-          </button>
+          </Link>
         </div>
         <div className="flex justify-center flex-col items-center">
           <button
-            className="btn btn-secondary btn-wide mb-2"
-            disabled={typeof selectedPlaylist === 'undefined'}
+            className="btn btn-wide mb-2"
+            onClick={() => {
+              router.push(`/playlists/${selectedPlaylistId}`);
+            }}
+            disabled={typeof selectedPlaylistId === 'undefined'}
           >
             プレイリストの編集
           </button>
           <select
             className="select select-bordered"
-            onChange={(e) => setSelectedPlaylist(e.target.value)}
+            onChange={(e) => setSelectedPlaylistId(e.target.value)}
           >
             <option disabled selected>
               編集するプレイリストを選択
             </option>
-            {mockPlaylists.map((playlist) => (
+            {myPlaylists.map((playlist: Playlist) => (
               <option key={playlist.id} value={playlist.id}>
                 {playlist.name}
               </option>
