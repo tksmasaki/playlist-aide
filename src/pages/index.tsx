@@ -60,7 +60,7 @@ const HomeContent = () => {
         </div>
         <hr />
         <p className="text-center">
-          以下は試しに表示している内容なので、削除または移動される可能性があります。
+          以下は試験的に表示している内容のため、削除または移動する可能性があります。
         </p>
         <h2 className="text-center">{session.token?.name}</h2>
         {session.token?.picture && (
