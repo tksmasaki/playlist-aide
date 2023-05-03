@@ -58,20 +58,6 @@ const HomeContent = () => {
           </select>
           <div className="flex justify-center"></div>
         </div>
-        <p className="text-center pt-8">
-          以下は試験的に表示している内容のため、削除または移動する可能性があります。
-        </p>
-        <h2 className="text-center">{session.token?.name}</h2>
-        {session.token?.picture && (
-          <div className="flex justify-center">
-            <Image
-              src={session.token.picture}
-              alt="user image"
-              width={100}
-              height={100}
-            />
-          </div>
-        )}
         <div className="flex justify-center">
           <button
             className="btn btn-primary btn-wide"
