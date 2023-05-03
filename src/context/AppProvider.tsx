@@ -10,14 +10,26 @@ export const AppProvider: FC<Props> = ({ children }) => {
   const { data: session } = useSession();
   const [myPlaylists, setMyPlaylists] = useState<Playlist[]>([]);
 
-  // TODO: APIでの取得処理に変える
   useEffect(() => {
     if (session) {
-      setMyPlaylists([
-        { id: '1', name: 'プレイリスト1' },
-        { id: '2', name: 'プレイリスト2' },
-        { id: '3', name: 'プレイリスト3' },
-      ]);
+      // TODO: 全てのプレイリストを取得できるようにする
+      const fetchMePlaylists =
+        async (): Promise<SpotifyApi.ListOfCurrentUsersPlaylistsResponse> => {
+          const response = await fetch('/api/me/playlists');
+          return await response.json();
+        };
+
+      fetchMePlaylists().then((data) => {
+        const playlists: Playlist[] = data.items.map(
+          (item: SpotifyApi.PlaylistObjectSimplified) => {
+            return {
+              id: item.id,
+              name: item.name,
+            };
+          }
+        );
+        setMyPlaylists(playlists);
+      });
     }
   }, [session, setMyPlaylists]);
 
