@@ -1,4 +1,3 @@
-import Layout from '@/components/Layout';
 import { useAppContext } from '@/context/appContext';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -6,14 +5,6 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 export default function Home() {
-  return (
-    <Layout>
-      <HomeContent />
-    </Layout>
-  );
-}
-
-const HomeContent = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [selectedPlaylistId, setSelectedPlaylistId] = useState<
@@ -78,4 +69,4 @@ const HomeContent = () => {
       </>
     );
   }
-};
+}

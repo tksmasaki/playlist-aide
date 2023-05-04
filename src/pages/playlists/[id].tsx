@@ -1,16 +1,7 @@
-import Layout from '@/components/Layout';
 import { useAppContext } from '@/context/appContext';
 import { useRouter } from 'next/router';
 
 export default function Playlist() {
-  return (
-    <Layout>
-      <EditPlaylist />
-    </Layout>
-  );
-}
-
-const EditPlaylist = () => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -18,6 +9,7 @@ const EditPlaylist = () => {
   const { myPlaylists } = useAppContext();
   const playlist = myPlaylists.find((playlist) => playlist.id === id);
   // TODO: 404がチラついてしまうので、ローディング中は表示しないようにする
+  //  => 2023/05/04 解決したかもしれないので、後で確認する
   if (!playlist) {
     return <h2 className="text-center">404 Not Found</h2>;
   }
@@ -30,4 +22,4 @@ const EditPlaylist = () => {
       </div>
     </>
   );
-};
+}

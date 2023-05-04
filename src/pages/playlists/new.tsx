@@ -1,14 +1,4 @@
-import Layout from '@/components/Layout';
-
 export default function New() {
-  return (
-    <Layout>
-      <NewPlaylist />
-    </Layout>
-  );
-}
-
-const NewPlaylist = () => {
   return (
     <>
       <div className="flex justify-center">
@@ -16,4 +6,4 @@ const NewPlaylist = () => {
       </div>
     </>
   );
-};
+}
