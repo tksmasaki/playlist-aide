@@ -23,17 +23,8 @@ export default function Home() {
           </Link>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <button
-            className="btn-wide btn mb-2"
-            onClick={() => {
-              router.push(`/playlists/${selectedPlaylistId}`);
-            }}
-            disabled={typeof selectedPlaylistId === 'undefined'}
-          >
-            プレイリストの編集
-          </button>
           <select
-            className="select-bordered select"
+            className="select-bordered select mb-2 max-w-[16rem]"
             onChange={(e) => setSelectedPlaylistId(e.target.value)}
           >
             <option disabled selected>
@@ -45,6 +36,16 @@ export default function Home() {
               </option>
             ))}
           </select>
+          <button
+            className="btn-wide btn "
+            onClick={() => {
+              router.push(`/playlists/${selectedPlaylistId}`);
+            }}
+            disabled={typeof selectedPlaylistId === 'undefined'}
+          >
+            プレイリストの編集
+          </button>
+
           <div className="flex justify-center"></div>
         </div>
         <div className="flex justify-center">
