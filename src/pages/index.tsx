@@ -18,13 +18,13 @@ export default function Home() {
     return (
       <>
         <div className="flex justify-center">
-          <Link href="/playlists/new" className="btn btn-wide">
+          <Link href="/playlists/new" className="btn-wide btn">
             プレイリストの作成
           </Link>
         </div>
-        <div className="flex justify-center flex-col items-center">
+        <div className="flex flex-col items-center justify-center">
           <button
-            className="btn btn-wide mb-2"
+            className="btn-wide btn mb-2"
             onClick={() => {
               router.push(`/playlists/${selectedPlaylistId}`);
             }}
@@ -33,7 +33,7 @@ export default function Home() {
             プレイリストの編集
           </button>
           <select
-            className="select select-bordered"
+            className="select-bordered select"
             onChange={(e) => setSelectedPlaylistId(e.target.value)}
           >
             <option disabled selected>
@@ -49,7 +49,7 @@ export default function Home() {
         </div>
         <div className="flex justify-center">
           <button
-            className="btn btn-primary btn-wide"
+            className="btn-primary btn-wide btn"
             onClick={() => signOut()}
           >
             ログアウト
@@ -62,7 +62,7 @@ export default function Home() {
       <>
         <h2 className="text-center">プレイリストの作成・編集をより簡単に</h2>
         <div className="flex justify-center">
-          <button className="btn btn-primary" onClick={() => signIn('spotify')}>
+          <button className="btn-primary btn" onClick={() => signIn('spotify')}>
             Spotify でログイン
           </button>
         </div>

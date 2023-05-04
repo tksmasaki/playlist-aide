@@ -9,7 +9,7 @@ const Layout: FC<Props> = ({ children }) => {
   return (
     <>
       <Header />
-      <main className="container min-h-screen mx-auto py-10 flex flex-col gap-6 bg-base-200">
+      <main className="container mx-auto flex min-h-screen flex-col gap-6 bg-base-200 py-10">
         {children}
       </main>
     </>
