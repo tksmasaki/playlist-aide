@@ -24,7 +24,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col items-center justify-center">
           <select
-            className="select-bordered select mb-2 max-w-[16rem]"
+            className="select-bordered select mb-2 w-[16rem]"
             onChange={(e) => setSelectedPlaylistId(e.target.value)}
           >
             <option disabled selected>
