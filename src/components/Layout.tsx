@@ -10,7 +10,7 @@ const Layout: FC<Props> = ({ children }) => {
     <>
       <div className="container mx-auto lg:max-w-screen-lg">
         <Header />
-        <main className="container mx-auto flex min-h-screen flex-col gap-6 bg-base-200 py-10">
+        <main className="container mx-auto flex min-h-screen flex-col gap-6 bg-base-200 py-8">
           {children}
         </main>
       </div>

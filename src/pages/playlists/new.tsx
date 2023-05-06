@@ -1,5 +1,5 @@
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
-
 export default function New() {
   const tabs = {
     0: '検索から追加',
@@ -17,13 +17,15 @@ export default function New() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-4">
-        <h2 className="text-center">新規プレイリストに追加する曲を選択</h2>
-        <div className="tabs">
+      <div className="flex flex-col items-center justify-center gap-4 px-4">
+        <h2 className="text-center text-lg">
+          新規プレイリストに追加する曲を選択
+        </h2>
+        <div className="tabs w-full">
           {Object.values(tabs).map((tab, index) => (
             <button
               key={index}
-              className={`tab-lifted tab ${
+              className={`tab-bordered tab flex-1 px-0 ${
                 selectedTab === index ? 'tab-active' : ''
               }`}
               onClick={() => setSelectedTab(index)}
@@ -34,26 +36,32 @@ export default function New() {
         </div>
         {selectedTab === 0 ? (
           <>
-            {/* 修正時の参考URL: https://tailwindcss.com/docs/hover-focus-and-other-states#placeholder-text */}
-            <form>
-              <input
-                className="input-bordered input"
-                type="search"
-                placeholder="キーワードを入力してください"
-              />
-            </form>
+            <div className="form-control w-full">
+              <label className="input-group">
+                <span>
+                  <MagnifyingGlassIcon className="h-5 w-5" />
+                </span>
+                <input
+                  type="text"
+                  placeholder="キーワードを入力してください"
+                  className="input-bordered input flex-1 placeholder:text-sm placeholder:italic placeholder:opacity-50"
+                />
+              </label>
+            </div>
           </>
         ) : (
-          <select
-            className="select-bordered select mb-2 w-[16rem]"
-            onChange={(e) => setSelectedLibraryId(e.target.value)}
-          >
-            {libraries.map((library) => (
-              <option key={library.id} value={library.id}>
-                {library.name}
-              </option>
-            ))}
-          </select>
+          <>
+            <select
+              className="select-bordered select mb-2 w-full text-center"
+              onChange={(e) => setSelectedLibraryId(e.target.value)}
+            >
+              {libraries.map((library) => (
+                <option key={library.id} value={library.id}>
+                  {library.name}
+                </option>
+              ))}
+            </select>
+          </>
         )}
       </div>
     </>
