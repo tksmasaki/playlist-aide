@@ -1,4 +1,7 @@
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import {
+  MagnifyingGlassIcon,
+  MusicalNoteIcon,
+} from '@heroicons/react/24/outline';
 import { useState } from 'react';
 export default function New() {
   const tabs = {
@@ -15,9 +18,16 @@ export default function New() {
     { id: 1, name: 'プレイリスト' },
   ];
 
+  const tracks = [
+    ...Array.from({ length: 20 }, (_, index) => ({
+      id: index,
+      name: `Track ${index}`,
+    })),
+  ];
+
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-4 px-4">
+      <div className="flex flex-col items-center justify-center gap-6 px-6">
         <h2 className="text-center text-lg">
           新規プレイリストに追加する曲を選択
         </h2>
@@ -48,11 +58,12 @@ export default function New() {
                 />
               </label>
             </div>
+            <TrackList tracks={tracks} />
           </>
         ) : (
           <>
             <select
-              className="select-bordered select mb-2 w-full text-center"
+              className="select-bordered select w-full text-center"
               onChange={(e) => setSelectedLibraryId(e.target.value)}
             >
               {libraries.map((library) => (
@@ -61,9 +72,28 @@ export default function New() {
                 </option>
               ))}
             </select>
+            <TrackList tracks={tracks} />
           </>
         )}
       </div>
     </>
   );
 }
+
+const TrackList = ({ tracks }: { tracks: any[] }) => {
+  return (
+    <div className="h-[60vh] w-full overflow-y-auto">
+      {tracks.map((track) => (
+        <div key={track.id} className="card card-side bg-base-100 shadow-xl">
+          <figure>
+            <MusicalNoteIcon className="h-5 w-5" />
+          </figure>
+          <div className="card-body">
+            <p className="card-title">{track.name}</p>
+            <p>Artist name</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
