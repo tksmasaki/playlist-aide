@@ -12,7 +12,11 @@ export default function App({
     <SessionProvider session={session}>
       <AppProvider>
         <Layout>
-          <Component {...pageProps} />
+          {process.env.NODE_ENV === 'development' ? (
+            <Component {...pageProps} />
+          ) : (
+            <p className="text-center">This app is under development.</p>
+          )}
         </Layout>
       </AppProvider>
     </SessionProvider>
