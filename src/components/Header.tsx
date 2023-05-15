@@ -7,9 +7,6 @@ const Header = () => {
         <Link href="/">
           <h1 className="text-2xl font-bold">Playlist Aide</h1>
         </Link>
-        <div>
-          <span className="font-bold">🚧 開発中 🚧</span>
-        </div>
       </div>
     </header>
   );
