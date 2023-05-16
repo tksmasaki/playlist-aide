@@ -1,0 +1,20 @@
+// ref: https://zenn.dev/bom_shibuya/articles/bd9c84bfe59f4f
+import { useCallback, useRef } from 'react';
+
+type Debounce = (fn: () => void) => void;
+
+export default function useDebounce(timeout: number): Debounce {
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const debounce: Debounce = useCallback(
+    (fn) => {
+      if (timer.current) {
+        clearTimeout(timer.current);
+      }
+      timer.current = setTimeout(() => {
+        fn();
+      }, timeout);
+    },
+    [timeout]
+  );
+  return debounce;
+}

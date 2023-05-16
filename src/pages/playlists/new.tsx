@@ -1,7 +1,5 @@
-import {
-  MagnifyingGlassIcon,
-  MusicalNoteIcon,
-} from '@heroicons/react/24/outline';
+import SearchedTracksList from '@/components/SearchedTracksList';
+import TrackList from '@/components/TrackList';
 import { useState } from 'react';
 export default function New() {
   const tabs = {
@@ -16,13 +14,6 @@ export default function New() {
   const libraries = [
     { id: 0, name: 'マイライブラリ' },
     { id: 1, name: 'プレイリスト' },
-  ];
-
-  const tracks = [
-    ...Array.from({ length: 20 }, (_, index) => ({
-      id: index,
-      name: `Track ${index}`,
-    })),
   ];
 
   return (
@@ -45,21 +36,7 @@ export default function New() {
           ))}
         </div>
         {selectedTab === 0 ? (
-          <>
-            <div className="form-control w-full">
-              <label className="input-group">
-                <span>
-                  <MagnifyingGlassIcon className="h-5 w-5" />
-                </span>
-                <input
-                  type="text"
-                  placeholder="キーワードを入力してください"
-                  className="input-bordered input flex-1 placeholder:text-sm placeholder:italic placeholder:opacity-50"
-                />
-              </label>
-            </div>
-            <TrackList tracks={tracks} />
-          </>
+          <SearchedTracksList />
         ) : (
           <>
             <select
@@ -72,28 +49,10 @@ export default function New() {
                 </option>
               ))}
             </select>
-            <TrackList tracks={tracks} />
+            <TrackList tracks={[]} />
           </>
         )}
       </div>
     </>
   );
 }
-
-const TrackList = ({ tracks }: { tracks: any[] }) => {
-  return (
-    <div className="h-[60vh] w-full overflow-y-auto">
-      {tracks.map((track) => (
-        <div key={track.id} className="card card-side bg-base-100 shadow-xl">
-          <figure>
-            <MusicalNoteIcon className="h-5 w-5" />
-          </figure>
-          <div className="card-body">
-            <p className="card-title">{track.name}</p>
-            <p>Artist name</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
