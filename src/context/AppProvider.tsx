@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import { FC, ReactNode, useEffect, useState } from 'react';
 import { AppContext } from './appContext';
@@ -12,15 +13,16 @@ export const AppProvider: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (session) {
-      // TODO: 全てのプレイリストを取得できるようにする
-      const fetchMePlaylists =
-        async (): Promise<SpotifyApi.ListOfCurrentUsersPlaylistsResponse> => {
-          const response = await fetch('/api/me/playlists');
-          return await response.json();
-        };
+      const fetchMePlaylists = async (): Promise<
+        SpotifyApi.ListOfCurrentUsersPlaylistsResponse[]
+      > => {
+        const response = await axios.get('/api/me/playlists');
+        return response.data;
+      };
 
-      fetchMePlaylists().then((data) => {
-        const playlists: Playlist[] = data.items.map(
+      fetchMePlaylists().then((responses) => {
+        const items = responses.map((res) => res.items).flat();
+        const playlists: Playlist[] = items.map(
           (item: SpotifyApi.PlaylistObjectSimplified) => {
             return {
               id: item.id,
